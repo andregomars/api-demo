@@ -1,0 +1,13 @@
+{
+  "name": "api-demo",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.12.1"
+  }
+}
