@@ -1,3 +1,3 @@
 export default {
-  'GET /': `example.itWorks`,
+  'GET /track/:isrc': `pullTrack`,
 };

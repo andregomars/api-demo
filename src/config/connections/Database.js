@@ -1,17 +1,17 @@
 /* eslint-disable no-process-env */
 export default {
-  // host: process.env.DB_HOST,
-  // username: process.env.DB_USERNAME,
-  // password: process.env.DB_PASSWORD,
-  // database: process.env.DB_DATABASE,
-  // port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
   
   // /**
   //  * Valid adapter/ORM options are:
   //  * `Sequelize` - For use with Google Cloud SQL
   //  * More adapters and database types to come later
   //  */
-  // adapter: `Sequelize`,
+  adapter: `Sequelize`,
 
   // /**
   //  * Valid dialect options when using the Sequelize adapter:
@@ -20,7 +20,7 @@ export default {
   //  * `postgres`
   //  * `mssql`
   //  */
-  // dialect: process.env.DB_DIALECT,
+  dialect: process.env.DB_DIALECT,
   
   // /**
   //  * Valid syncing options are:
@@ -31,12 +31,12 @@ export default {
   //  * 
   //  * NOTE: if NODE_ENV=production, `alter` or `force` will automatically be replaced with `safe`
   //  */
-  // sync: `safe`,
+  sync: `safe`,
 
   // /**
   //  * If you don't specify a connection in one of your models, the default will be used.
   //  * Set this option to true if you want it to be the default connection.
   //  */
-  // default: true,
+  default: true,
 
 };
