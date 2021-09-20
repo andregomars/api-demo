@@ -22,7 +22,7 @@ docker run --name demosql -p3306:3306 -e MYSQL_ROOT_PASSWORD={password} -d mysql
 
 6. Install dockerkit CLI （sudo if failed because npm permission)
 ```bash
-npm install -g git+ssh://git@github.com:andregomars/dockerkit.git
+npm install -g git+https://github.com/andregomars/dockerkit.git
 ```
 
 7. Serve API from localhost:3000 by following command
