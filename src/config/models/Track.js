@@ -15,7 +15,7 @@ export default {
   },
 
   associations: () => {
-    Track.hasMany(Artist, { foreignKey: 'isrc', as:`artists` });
+    Track.hasMany(Artist, { foreignKey: 'isrc', as: `artists` });
   },
 
   options: {
@@ -23,8 +23,5 @@ export default {
     createdAt: `created_at`,
     updatedAt: `updated_at`,
     underscored: true,
-    classMethods: {},
-    instanceMethods: {},
-    hooks: {},
   },
 };

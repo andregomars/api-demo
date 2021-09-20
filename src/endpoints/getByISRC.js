@@ -2,13 +2,15 @@ export default async (req, res) => {
   const { isrc } = req.params;
 
   try {
-    const track = await Track.findByPk(isrc, { include: [`artists`], raw: true, nest: true });
-
+    const track = await Track.findByPk(isrc, { 
+      attributes: [`isrc`, `title`, `image`], 
+      include: [{ model: Artist, as: `artists`, attributes: [`name`] }], 
+      nest: true,
+    });
+    
     if (track) {
-      const output = _.pick(track, [`isrc`, `title`, `image`, `artists.name`]);
-
       console.warn(`Track is found for ISRC: ${isrc} in library!`);
-      res.status(200).send(output);
+      res.status(200).send(track);
     } else {
       console.warn(`No track is found for ISRC: ${isrc} in library!`);
       res.status(204).send();

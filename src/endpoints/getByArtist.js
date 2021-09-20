@@ -3,14 +3,23 @@ export default async (req, res) => {
 
   try {
     const artists = await Artist.findAll({ attributes: [`isrc`], where: { name }, raw: true });
+    if (!artists && artists.length < 1) {
+      console.warn(`No track is found for Artist: ${name} in library!`);
+      return res.status(204).send();
+    }
+
     const isrc_array = _.chain(artists).uniq(`isrc`).map(`isrc`).value();
 
-    const tracks = await Track.findAll({ where: { isrc: isrc_array }, include: [`artists`], raw: true, nest: true });
+    const tracks = await Track.findAll({ 
+      where: { isrc: isrc_array },
+      attributes: [`isrc`, `title`, `image`], 
+      include: [{ model: Artist, as: `artists`, attributes: [`name`] }], 
+      nest: true,
+    });
 
     if (tracks && tracks.length > 0) {
-      const output = _.map(tracks, (track) => _.pick(track, [`isrc`, `title`, `image`, `artists.name`]));
       console.warn(`Tracks are found for Artist: ${name} in library!`);
-      res.status(200).send(output);
+      res.status(200).send(tracks);
     } else {
       console.warn(`No track is found for Artist: ${name} in library!`);
       res.status(204).send();

@@ -32,7 +32,7 @@ export default async (req, res) => {
 
     const track = _.maxBy(items, `popularity`);
     const title = track.name;
-    const artists = _.map(track.album.artists, `name`);
+    const artists = _.map(track.artists, `name`);
     const image = _.get(track, `album.images[0].url`);
 
     const existing_track = await Track.findOne({ where: { isrc }, raw: true });
