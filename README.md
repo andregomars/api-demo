@@ -21,7 +21,22 @@ dockerkit start 3000 8080
 ## API document 
 https://app.swaggerhub.com/apis-docs/andregomars/api-demo/0.0.0
 
-## API request is protected by Basic Authentication
 
-- key: osyq1ienktfxwo0mpqo20vkei7oika1x
-- secret: n7jq6bxlm38q76wawydq6canklqgajt2
+## Endpoints
+- GET /import/:isrc
+- GET /track/by_isrc/:isrc
+- GET /track/by_artist/:isrc
+
+## API request is protected by Basic Authentication
+- Either by calling api with auth header
+```bash
+curl --location --request GET 'localhost:3000/track/by_artist/The%20Beatles' \
+--header 'Authorization: Basic b3N5cTFpZW5rdGZ4d28wbXBxbzIwdmtlaTdvaWthMXg6bjdqcTZieGxtMzhxNzZ3YXd5ZHE2Y2Fua2xxZ2FqdDI='
+```
+- Or by input foolowing url in the browser address bar
+http://osyq1ienktfxwo0mpqo20vkei7oika1x:n7jq6bxlm38q76wawydq6canklqgajt2@localhost:3000/track/by_artist/The%20Beatles
+
+
+- Basic Authorization key & secret for the demo
+  - key: osyq1ienktfxwo0mpqo20vkei7oika1x
+  - secret: n7jq6bxlm38q76wawydq6canklqgajt2
