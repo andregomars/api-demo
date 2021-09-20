@@ -1,22 +1,36 @@
 
 ## Build & Verify on local machine
-1. Create .env file
+1. Download source code to local machine
+git clone https://github.com/andregomars/api-demo.git
+
+2. Create .env file
 ```bash
 cp .env.example .env
 ```
-2. Host mysql 5.7 through docker container
+
+3. Apply Spotify developer account and put client id and secret on following sections in the .env file. 
+SPOTIFY_OAUTH_CLIENT_ID=
+SPOTIFY_OAUTH_CLIENT_SECRET=
+
+4. Host mysql 5.7 through docker container
 ```bash
 docker run --name demosql -p3306:3306 -e MYSQL_ROOT_PASSWORD={password} -d mysql:5.7
 ```
 - please replace {password} for mysql root user, and replace DB_PASSWORD value in .env file with your password
 
-3. Install dockerkit CLI
+5. Log in mysql by localhost port 3306 and root user credential, then create database name as `track-service`
 
-4. Serve API from localhost:3000 by following command
+6. Install dockerkit CLI （sudo if failed because npm permission)
+```bash
+npm install -g git+ssh://git@github.com:andregomars/dockerkit.git
+```
+
+7. Serve API from localhost:3000 by following command
 ```bash
 dockerkit start 3000 8080
 ```
 
+8. Use Postman to test listed APIs according to following document and auth instructions to verify the functionalities.
 
 ## API document 
 https://app.swaggerhub.com/apis-docs/andregomars/api-demo/0.0.0
