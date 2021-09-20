@@ -7,6 +7,7 @@
 
 export default {
   app_name: `api-demo`,
+  auth_token: process.env.AUTH_TOKEN,
   spotify: {
     oauth_url: process.env.SPOTIFY_OAUTH_URL,
     client_id: process.env.SPOTIFY_OAUTH_CLIENT_ID,

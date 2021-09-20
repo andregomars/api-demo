@@ -31,7 +31,7 @@ export default {
   //  * 
   //  * NOTE: if NODE_ENV=production, `alter` or `force` will automatically be replaced with `safe`
   //  */
-  sync: `safe`,
+  sync: `alter`,
 
   // /**
   //  * If you don't specify a connection in one of your models, the default will be used.
