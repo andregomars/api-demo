@@ -1,0 +1,117 @@
+swagger: '2.0'
+info:
+  description: >-
+    API demo from Andre Shen
+  version: 0.0.0
+  title: API demo
+  termsOfService: 'http://andregomars.github.io'
+  contact:
+    email: andregomars@gmail.com
+  license:
+    name: andre
+    url: 'http://andregomars.github.io'
+host: andregomars.github.io
+basePath: /api/rest/v1
+tags:
+  - name: importTrack
+    description: Import track by ISRC 
+  - name: getTrackByISRC
+    description: Retrieve track by ISRC
+  - name: getTracksByArtist
+    description: Retrieve tracks by artist name
+schemes:
+  - http
+paths:
+  '/import/{isrc}':
+    get:
+      summary: Import from Spotify API into demo library database
+      operationId: importTrack
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: isrc
+          in: path
+          description: Pass in ISRC
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Track is created
+        '409':
+          description: Track is conflict
+        '500':
+          description: Internal Server Error 
+      x-swagger-router-controller: Default
+  '/track/by_isrc/{isrc}':
+    get:
+      summary: Query track from library database by ISRC
+      operationId: getTrackByISRC
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: isrc
+          in: path
+          description: Pass in ISRC
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Track is found
+          schema:
+            $ref: '#/definitions/Track'
+        '201':
+          description: Track is not found
+        '500':
+          description: Internal Server Error 
+      x-swagger-router-controller: Default
+  '/track/by_artist/{name}':
+    get:
+      summary: Query tracks from library database by artist name
+      operationId: getTrackByArtist
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: Pass in Artist Name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Track is found
+          schema:
+            $ref: '#/definitions/Tracks'
+        '201':
+          description: Track is not found
+        '500':
+          description: Internal Server Error 
+      x-swagger-router-controller: Default
+definitions:
+  Tracks:
+    type: array
+    items:
+      $ref: '#/definitions/Track'
+  Track:
+    type: object
+    properties:
+      isrc:
+        type: string
+      title:
+        type: string
+      image:
+        type: string
+      artists:
+        type: array
+        items:
+          $ref: '#/definitions/Artist'
+  Artist:
+    type: object
+    properties:
+      name:
+        type: string
